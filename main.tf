@@ -38,26 +38,26 @@ resource "azurerm_windows_web_app" "App" {
     "dotnet_framework_version" = "v6.0"
   }
 }
-resource "azurerm_windows_web_app" "Api" {
-  name                = "ApiCleanPaySystem"
-  resource_group_name = var.rg
-  location            = var.location
-  service_plan_id     = azurerm_service_plan.Plan.id
+# resource "azurerm_windows_web_app" "Api" {
+#   name                = "ApiCleanPaySystem"
+#   resource_group_name = var.rg
+#   location            = var.location
+#   service_plan_id     = azurerm_service_plan.Plan.id
 
-    site_config {
-      always_on = "false"
-    }
-  app_settings = {
-    "WEBSITE_DNS_SERVER" = "168.63.129.16",
-    "vnet_route_all_enabled" = "1"
-  }
-  public_network_access_enabled = false
-}
+#     site_config {
+#       always_on = "false"
+#     }
+#   app_settings = {
+#     "WEBSITE_DNS_SERVER" = "168.63.129.16",
+#     "vnet_route_all_enabled" = "1"
+#   }
+#   public_network_access_enabled = false
+# }
 
-resource "azurerm_app_service_virtual_network_swift_connection" "vnetintegrationconnection" {
-  app_service_id  = azurerm_windows_web_app.App.id
-  subnet_id       = azurerm_subnet.integrationsubnet.id
-}
+# resource "azurerm_app_service_virtual_network_swift_connection" "vnetintegrationconnection" {
+#   app_service_id  = azurerm_windows_web_app.App.id
+#   subnet_id       = azurerm_subnet.integrationsubnet.id
+# }
 
 
 
